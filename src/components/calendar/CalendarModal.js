@@ -8,9 +8,9 @@ import Swal from "sweetalert2";
 
 import { uiCloseModal } from "../../actions/ui";
 import {
-  eventAddNew,
+  eventstartAddNew,
   eventClearActiveEvent,
-  eventUpdated,
+  eventStartUpdated,
 } from "../../actions/events";
 
 const customStyles = {
@@ -41,7 +41,6 @@ export const CalendarModal = () => {
 
   const [dateStart, setDateStart] = useState(initEvent.start);
   const [dateEnd, setDateEnd] = useState(initEvent.end);
-
   const [titleValid, setTitleValid] = useState(true);
 
   const [formValues, setFormValues] = useState(initEvent);
@@ -105,17 +104,8 @@ export const CalendarModal = () => {
     setTitleValid(true);
 
     activeEvent
-      ? dispatch(eventUpdated(formValues))
-      : dispatch(
-          eventAddNew({
-            ...formValues,
-            id: new Date().getTime(),
-            user: {
-              _id: "123",
-              name: "Julian",
-            },
-          })
-        );
+      ? dispatch(eventStartUpdated(formValues))
+      : dispatch(eventstartAddNew(formValues));
 
     closeModal();
   };
@@ -136,7 +126,8 @@ export const CalendarModal = () => {
           <label>Fecha y hora inicio</label>
           <DateTimePicker
             onChange={handleStartDateChange}
-            value={dateStart}
+            // minDate={dateStart}
+            value={activeEvent ? activeEvent.start : dateStart}
             className="form-control"
           />
         </div>
@@ -144,8 +135,8 @@ export const CalendarModal = () => {
           <label>Fecha y hora fin</label>
           <DateTimePicker
             onChange={handleEndDateChange}
-            value={dateEnd}
             // minDate={dateStart}
+            value={activeEvent ? activeEvent.end : dateEnd}
             className="form-control"
           />
         </div>
