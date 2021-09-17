@@ -10,16 +10,16 @@ export const LoginScreen = () => {
   const dispatch = useDispatch();
 
   const [formLoginValues, handleLoginInputChange] = useForm({
-    lEmail: "julian@julian.com",
-    lPassword: "123456",
+    lEmail: "",
+    lPassword: "",
   });
   const { lEmail, lPassword } = formLoginValues;
 
   const [formRegisterValues, handleRegisterInputChange] = useForm({
-    rName: "Victoria Mendoza de Herrera",
-    rEmail: "piki@piki.com",
-    rPassword1: "123456",
-    rPassword2: "123456",
+    rName: "",
+    rEmail: "",
+    rPassword1: "",
+    rPassword2: "",
   });
   const { rName, rEmail, rPassword1, rPassword2 } = formRegisterValues;
 
@@ -140,7 +140,7 @@ export const LoginScreen = () => {
               <input
                 type="email"
                 className="form-control"
-                placeholder="example@example.com"
+                placeholder="email@email.com"
                 autoComplete="off"
                 name="rEmail"
                 value={rEmail}
