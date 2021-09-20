@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 import { uiCloseModal } from "../../actions/ui";
 import {
-  eventstartAddNew,
+  eventStartAddNew,
   eventClearActiveEvent,
   eventStartUpdated,
 } from "../../actions/events";
@@ -25,7 +25,9 @@ const customStyles = {
 };
 
 //El "root" sale del index.js en "document.getElementById("root")"
-Modal.setAppElement("#root");
+if (process.env.NODE_ENV !== "test") {
+  Modal.setAppElement("#root");
+}
 
 const initEvent = {
   title: "",
@@ -105,7 +107,7 @@ export const CalendarModal = () => {
 
     activeEvent
       ? dispatch(eventStartUpdated(formValues))
-      : dispatch(eventstartAddNew(formValues));
+      : dispatch(eventStartAddNew(formValues));
 
     closeModal();
   };
@@ -118,6 +120,7 @@ export const CalendarModal = () => {
       closeTimeoutMS={200}
       className="modal"
       overlayClassName="modal-fondo"
+      ariaHideApp={!process.env.NODE_ENV === "test"}
     >
       <h1> {activeEvent ? "Editar evento" : "Nuevo evento"} </h1>
       <hr />

@@ -92,7 +92,7 @@ const eventLoaded = (events) => ({
   payload: events,
 });
 
-export const eventstartAddNew = (event) => {
+export const eventStartAddNew = (event) => {
   return async (dispatch, getState) => {
     try {
       const { title, start, end, notes } = event;

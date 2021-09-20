@@ -53,13 +53,15 @@ export const LoginScreen = () => {
   };
 
   const handleRegister = (e) => {
-    e.preventDefault();
-    if (isFormValidRegister()) {
+      e.preventDefault();
+      if (isFormValidRegister()) {
+        
       dispatch(startRegister(rEmail, rPassword1, rName));
     }
   };
 
   const isFormValidRegister = () => {
+    
     let msgErrorForm = "Validaciones superadas...";
     let valid = true;
 
@@ -124,7 +126,7 @@ export const LoginScreen = () => {
 
         <div className="col-md-6 login-form-2">
           <h3>Registro</h3>
-          <form onSubmit={handleRegister}>
+          <form id="formregister" onSubmit={handleRegister}>
             <div className="form-group">
               <input
                 type="text"
